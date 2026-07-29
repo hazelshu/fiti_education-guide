@@ -408,18 +408,14 @@
     text-align: center;
   }
 
-  .instructor-mark {
-    display: grid;
-    width: 104px;
-    height: 104px;
-    place-items: center;
+  .instructor-photo {
+    display: block;
+    width: 150px;
+    height: 150px;
     border: 7px solid #ffffff;
     border-radius: 50%;
-    background: var(--navy);
-    color: #ffffff;
-    font-size: 25px;
-    font-weight: 900;
-    letter-spacing: 0.04em;
+    background: #ffffff;
+    object-fit: contain;
     box-shadow: 0 8px 22px rgba(18, 49, 111, 0.16);
   }
 
@@ -1120,8 +1116,8 @@
   <nav class="quick-nav" aria-label="문서 바로가기">
     <a href="#outcome">무엇을 가져가나요</a>
     <a href="#flow">학습 흐름</a>
-    <a href="#instructor">강사소개</a>
     <a href="#schedule">시간표</a>
+    <a href="#instructor">강사소개</a>
     <a href="#prepare">사전 준비</a>
     <a href="#safety">안전 수칙</a>
     <a href="#faq">자주 묻는 질문</a>
@@ -1205,37 +1201,6 @@
       </div>
     </section>
 
-    <section id="instructor">
-      <p class="section-kicker">INSTRUCTOR</p>
-      <h2>프로젝트와 애자일 방법론을 AX 실무에 연결합니다</h2>
-      <p class="section-lead">다양한 산업의 실무 교육 경험을 바탕으로, 생성형 AI를 업무 현장에서 실행 가능한 방식으로 안내합니다.</p>
-
-      <article class="instructor-card">
-        <div class="instructor-identity">
-          <div class="instructor-mark" aria-hidden="true">KTY</div>
-          <div>
-            <p class="instructor-name">김태영 강사</p>
-            <p class="instructor-role">프로젝트리서치 대표 · 솔트룩스 위촉강사</p>
-          </div>
-        </div>
-        <div>
-          <p class="instructor-summary">프로젝트 관리와 애자일 방법론을 기반으로 조직의 AX 전환과 생성형 AI 실무 활용을 돕는 교육 전문가입니다.</p>
-          <ul class="instructor-meta" aria-label="강사 자격">
-            <li>PMI PMP</li>
-            <li>SAFe SPC</li>
-            <li>SAFe SSM</li>
-            <li>CSM</li>
-          </ul>
-          <ul class="lecture-history" aria-label="주요 강의 이력">
-            <li><b>신한EZ손해보험</b>AX Insight · 2026</li>
-            <li><b>삼성전자 구매</b>CPSM AX · 2026</li>
-            <li><b>LG전자</b>SW PM 실무 · 2026</li>
-            <li><b>SK쉴더스</b>GenAI Global PM · 2026</li>
-          </ul>
-        </div>
-      </article>
-    </section>
-
     <section id="schedule">
       <p class="section-kicker">DAY SCHEDULE</p>
       <h2>오전의 기초가 오후의 실무 적용으로 이어집니다</h2>
@@ -1303,6 +1268,37 @@
           <span class="agenda-type discuss">토의</span>
         </li>
       </ol>
+    </section>
+
+    <section id="instructor">
+      <p class="section-kicker">INSTRUCTOR</p>
+      <h2>프로젝트와 애자일 방법론을 AX 실무에 연결합니다</h2>
+      <p class="section-lead">다양한 산업의 실무 교육 경험을 바탕으로, 생성형 AI를 업무 현장에서 실행 가능한 방식으로 안내합니다.</p>
+
+      <article class="instructor-card">
+        <div class="instructor-identity">
+          <img class="instructor-photo" src="assets/instructor-kim-taeyoung.png" alt="김태영 강사 캐릭터 이미지" width="150" height="150">
+          <div>
+            <p class="instructor-name">김태영 강사</p>
+            <p class="instructor-role">프로젝트리서치 대표 · 솔트룩스 위촉강사</p>
+          </div>
+        </div>
+        <div>
+          <p class="instructor-summary">프로젝트 관리와 애자일 방법론을 기반으로 조직의 AX 전환과 생성형 AI 실무 활용을 돕는 교육 전문가입니다.</p>
+          <ul class="instructor-meta" aria-label="강사 자격">
+            <li>PMI PMP</li>
+            <li>SAFe SPC</li>
+            <li>SAFe SSM</li>
+            <li>CSM</li>
+          </ul>
+          <ul class="lecture-history" aria-label="주요 강의 이력">
+            <li><b>신한EZ손해보험</b>AX Insight · 2026</li>
+            <li><b>삼성전자 구매</b>CPSM AX · 2026</li>
+            <li><b>LG전자</b>SW PM 실무 · 2026</li>
+            <li><b>SK쉴더스</b>GenAI Global PM · 2026</li>
+          </ul>
+        </div>
+      </article>
     </section>
 
     <section id="prepare">
