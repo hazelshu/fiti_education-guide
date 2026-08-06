@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="FITI시험연구원 Antigravity 2.0 및 Google Cloud SDK 교육 전 설치 안내">
+<meta name="audience" content="FITI시험연구원 생성형 AI 교육 수강생">
+<meta name="document-id" content="FITI-ANTIGRAVITY-PREINSTALL">
+<meta name="sensitivity" content="external">
+<meta name="jurisdiction" content="KR">
+<meta name="ai-used" content="true">
+<title>Antigravity 전용 설치 안내 | FITI 수강생 사전 준비</title>
+<style>
+  :root {
+    --navy: #12316f;
+    --navy-dark: #0b244f;
+    --blue: #1f55b5;
+    --blue-soft: #edf4ff;
+    --blue-pale: #f7faff;
+    --teal: #047857;
+    --teal-soft: #ecfdf5;
+    --amber: #9a5700;
+    --amber-soft: #fff8e8;
+    --red: #a52626;
+    --red-soft: #fff1f1;
+    --ink: #172033;
+    --muted: #4b5563;
+    --line: #d8e0eb;
+    --paper: #ffffff;
+    --canvas: #f3f6fa;
+    --shadow: 0 12px 32px rgba(18, 49, 111, 0.08);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--canvas);
+    color: var(--ink);
+    font-family: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+  button, a { font: inherit; }
+  a { color: inherit; }
+
+  .skip-link {
+    position: fixed;
+    top: 8px;
+    left: 8px;
+    z-index: 100;
+    transform: translateY(-150%);
+    border-radius: 8px;
+    background: var(--paper);
+    color: var(--navy);
+    padding: 10px 14px;
+    font-weight: 800;
+    box-shadow: var(--shadow);
+  }
+  .skip-link:focus {
+    transform: translateY(0);
+    outline: 3px solid #f4b942;
+    outline-offset: 2px;
+  }
+
+  .distribution-banner {
+    background: var(--navy-dark);
+    color: #fff;
+    padding: 7px 16px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .08em;
+  }
+  .page {
+    width: min(1080px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 24px 0 72px;
+  }
+  .topline {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 14px;
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .back-link {
+    color: var(--navy);
+    font-weight: 800;
+    text-decoration: none;
+  }
+  .back-link:hover, .back-link:focus-visible { text-decoration: underline; }
+
+  .hero {
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    background: var(--navy);
+    color: #fff;
+    padding: clamp(34px, 6vw, 64px);
+    box-shadow: var(--shadow);
+  }
+  .hero::after {
+    position: absolute;
+    right: -76px;
+    bottom: -96px;
+    width: 280px;
+    height: 280px;
+    border: 38px solid rgba(255,255,255,.08);
+    border-radius: 50%;
+    content: "";
+  }
+  .eyebrow {
+    margin: 0 0 12px;
+    color: #dbeafe;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: .08em;
+  }
+  .hero h1 {
+    position: relative;
+    z-index: 1;
+    max-width: 780px;
+    margin: 0;
+    font-size: clamp(29px, 5vw, 48px);
+    line-height: 1.22;
+    letter-spacing: -.04em;
+  }
+  .hero-lead {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    margin: 20px 0 0;
+    color: #e7efff;
+    font-size: clamp(16px, 2vw, 19px);
+  }
+  .hero-lead strong { color: #fff; }
+  .meta-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 28px;
+  }
+  .meta-card {
+    border: 1px solid rgba(255,255,255,.24);
+    border-radius: 13px;
+    background: rgba(255,255,255,.1);
+    padding: 13px 14px;
+  }
+  .meta-card span, .meta-card strong { display: block; }
+  .meta-card span { color: #cbd8f5; font-size: 11px; font-weight: 800; letter-spacing: .04em; }
+  .meta-card strong { margin-top: 4px; color: #fff; font-size: 14px; line-height: 1.45; }
+
+  .account-notice {
+    position: relative;
+    z-index: 1;
+    margin-top: 18px;
+    border-left: 5px solid #f4b942;
+    border-radius: 0 12px 12px 0;
+    background: #fff8e8;
+    padding: 15px 17px;
+    color: #654000;
+  }
+  .account-notice strong { color: #734500; }
+
+  .quick-nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    gap: 8px;
+    margin: 16px 0 24px;
+    padding: 10px;
+    overflow-x: auto;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: rgba(255,255,255,.95);
+    box-shadow: 0 8px 22px rgba(18,49,111,.07);
+    backdrop-filter: blur(10px);
+  }
+  .quick-nav a {
+    flex: 0 0 auto;
+    border-radius: 8px;
+    padding: 8px 11px;
+    color: var(--navy);
+    font-size: 13px;
+    font-weight: 800;
+    text-decoration: none;
+  }
+  .quick-nav a:hover, .quick-nav a:focus-visible {
+    background: var(--blue-soft);
+    outline: 2px solid var(--blue);
+    outline-offset: -2px;
+  }
+
+  main { display: grid; gap: 22px; }
+  section {
+    scroll-margin-top: 86px;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background: var(--paper);
+    padding: clamp(24px, 4vw, 40px);
+    box-shadow: 0 8px 24px rgba(18,49,111,.04);
+  }
+  h2 {
+    margin: 0;
+    color: var(--navy);
+    font-size: clamp(23px, 3vw, 30px);
+    line-height: 1.35;
+    letter-spacing: -.025em;
+  }
+  h3 { margin: 0; color: var(--navy); font-size: 18px; line-height: 1.45; }
+  p { margin: 0; }
+  .section-kicker {
+    margin-bottom: 6px;
+    color: var(--blue);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .1em;
+  }
+  .section-lead { max-width: 800px; margin-top: 10px; color: var(--muted); }
+  .step-title { display: flex; gap: 13px; align-items: flex-start; }
+  .step-number {
+    display: grid;
+    flex: 0 0 38px;
+    width: 38px;
+    height: 38px;
+    place-items: center;
+    border-radius: 11px;
+    background: var(--navy);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 900;
+  }
+
+  .summary-flow {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0,1fr));
+    gap: 10px;
+    margin-top: 24px;
+    padding: 0;
+    list-style: none;
+  }
+  .summary-flow li {
+    position: relative;
+    min-height: 120px;
+    border: 1px solid #c9d8f0;
+    border-radius: 14px;
+    background: var(--blue-soft);
+    padding: 17px 16px;
+  }
+  .summary-flow li:not(:last-child)::after {
+    position: absolute;
+    top: 50%;
+    right: -10px;
+    z-index: 2;
+    width: 10px;
+    color: var(--blue);
+    content: "›";
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 1;
+    transform: translateY(-50%);
+  }
+  .summary-flow b, .summary-flow span { display: block; }
+  .summary-flow b { color: var(--navy); font-size: 15px; }
+  .summary-flow span { margin-top: 7px; color: var(--muted); font-size: 13px; line-height: 1.55; }
+
+  .os-grid, .install-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 14px;
+    margin-top: 24px;
+  }
+  .os-card, .install-card {
+    border: 1px solid var(--line);
+    border-radius: 15px;
+    background: #fbfdff;
+    padding: 21px;
+  }
+  .os-label {
+    display: inline-block;
+    margin-bottom: 12px;
+    border-radius: 999px;
+    background: var(--navy);
+    padding: 4px 10px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 900;
+  }
+  .os-label.mac { background: var(--teal); }
+  .spec-list, .steps, .plain-list, .final-list {
+    margin: 14px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .spec-list { display: grid; gap: 8px; }
+  .spec-list li { position: relative; padding-left: 26px; color: var(--muted); font-size: 14px; }
+  .spec-list li::before { position: absolute; left: 0; color: var(--teal); content: "✓"; font-weight: 900; }
+  .spec-list strong { color: var(--ink); }
+  .intel-warning {
+    margin-top: 14px;
+    border: 1px solid #f0c8c8;
+    border-radius: 11px;
+    background: var(--red-soft);
+    padding: 13px 14px;
+    color: #751b1b;
+    font-size: 13px;
+    font-weight: 750;
+  }
+  .chip-path {
+    margin-top: 11px;
+    border-radius: 10px;
+    background: #eef2f7;
+    padding: 12px 13px;
+    color: #263247;
+    font-size: 13px;
+  }
+  .chip-path b { color: var(--navy); }
+
+  .steps { display: grid; gap: 10px; counter-reset: install; }
+  .steps li {
+    position: relative;
+    min-height: 42px;
+    padding: 3px 0 3px 42px;
+    counter-increment: install;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .steps li::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: grid;
+    width: 30px;
+    height: 30px;
+    place-items: center;
+    border-radius: 9px;
+    background: var(--blue-soft);
+    color: var(--blue);
+    content: counter(install);
+    font-size: 12px;
+    font-weight: 900;
+  }
+  .steps strong { color: var(--ink); }
+  .action-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 18px;
+    border: 1px solid var(--blue);
+    border-radius: 10px;
+    background: var(--blue);
+    color: #fff;
+    padding: 10px 14px;
+    font-size: 14px;
+    font-weight: 850;
+    text-decoration: none;
+  }
+  .action-link:hover, .action-link:focus-visible { background: var(--navy); outline: 3px solid #bed4ff; outline-offset: 2px; }
+  .action-link.secondary { border-color: #b8cae7; background: #fff; color: var(--navy); }
+  .action-link.secondary:hover, .action-link.secondary:focus-visible { background: var(--blue-soft); }
+  .install-card > .action-link {
+    display: flex;
+    width: 100%;
+    margin-top: 15px;
+  }
+  .download-note {
+    margin-top: 11px;
+    border-radius: 10px;
+    background: var(--blue-soft);
+    padding: 12px 13px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .download-note strong { color: var(--navy); }
+  .download-note code {
+    color: var(--navy);
+    font-family: "SFMono-Regular", Consolas, monospace;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .do-not {
+    margin-top: 20px;
+    border-left: 5px solid var(--amber);
+    border-radius: 0 12px 12px 0;
+    background: var(--amber-soft);
+    padding: 16px 18px;
+    color: #654000;
+  }
+  .do-not strong { color: #734500; }
+
+  .command-box {
+    margin-top: 24px;
+    overflow: hidden;
+    border: 1px solid #273b64;
+    border-radius: 14px;
+    background: #0f1d38;
+    color: #f8fbff;
+  }
+  .command-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,.13);
+    padding: 10px 13px;
+    color: #cbd8f5;
+    font-size: 12px;
+    font-weight: 800;
+  }
+  .copy-button {
+    border: 1px solid rgba(255,255,255,.28);
+    border-radius: 8px;
+    background: rgba(255,255,255,.08);
+    color: #fff;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 800;
+  }
+  .copy-button:hover, .copy-button:focus-visible { background: rgba(255,255,255,.16); outline: 2px solid #9ec5ff; outline-offset: 2px; }
+  pre { margin: 0; padding: 20px; overflow-x: auto; }
+  pre code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; font-size: 16px; }
+  .result-grid {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .result-card {
+    border-radius: 13px;
+    padding: 16px 17px;
+  }
+  .result-card.success { border: 1px solid #a7dfc9; background: var(--teal-soft); color: #065f46; }
+  .result-card.retry { border: 1px solid #efcf98; background: var(--amber-soft); color: #654000; }
+  .result-card b { display: block; margin-bottom: 4px; }
+  .result-card span { font-size: 14px; }
+
+  .launch-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 22px;
+  }
+  .launch-card {
+    border: 1px solid var(--line);
+    border-radius: 13px;
+    background: #fbfdff;
+    padding: 17px 18px;
+  }
+  .launch-card .os-label { margin-bottom: 9px; }
+  .launch-card h3 { font-size: 16px; }
+  .launch-card p { margin-top: 7px; color: var(--muted); font-size: 14px; }
+
+  .help-grid {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .help-card {
+    border: 1px solid var(--line);
+    border-radius: 13px;
+    background: #fbfdff;
+    padding: 18px;
+  }
+  .help-card h3 { font-size: 16px; }
+  .help-card p { margin-top: 8px; color: var(--muted); font-size: 14px; }
+  .domain-list { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 11px; }
+  .domain-list code {
+    border: 1px solid #c9d8f0;
+    border-radius: 8px;
+    background: var(--blue-soft);
+    padding: 4px 8px;
+    color: var(--navy);
+    font-family: "SFMono-Regular", Consolas, monospace;
+    font-size: 12px;
+  }
+
+  .final-check { border: 2px solid #bad0f0; background: var(--blue-soft); }
+  .final-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 9px; }
+  .final-list li {
+    position: relative;
+    border: 1px solid #c9d8f0;
+    border-radius: 11px;
+    background: #fff;
+    padding: 11px 12px 11px 42px;
+  }
+  .final-list li::before { position: absolute; top: 11px; left: 14px; color: var(--blue); content: "☐"; font-size: 17px; font-weight: 900; }
+  .closing { margin-top: 20px; color: var(--navy); font-size: 18px; font-weight: 900; text-align: center; }
+
+  footer { padding: 32px 12px 0; color: var(--muted); text-align: center; font-size: 12px; }
+  footer p + p { margin-top: 7px; }
+  .footer-banner { margin-top: 24px; background: var(--navy-dark); color: #fff; padding: 7px 16px; text-align: center; font-size: 12px; font-weight: 800; letter-spacing: .08em; }
+  .toast {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 40;
+    transform: translateY(20px);
+    opacity: 0;
+    border-radius: 10px;
+    background: var(--navy-dark);
+    color: #fff;
+    padding: 10px 14px;
+    font-size: 13px;
+    font-weight: 800;
+    pointer-events: none;
+    transition: .2s ease;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  @media (max-width: 840px) {
+    .meta-grid, .summary-flow { grid-template-columns: repeat(2,minmax(0,1fr)); }
+    .summary-flow li:nth-child(2)::after { display: none; }
+  }
+  @media (max-width: 720px) {
+    body { font-size: 15px; word-break: normal; }
+    .page { width: min(100% - 20px,1080px); padding-top: 10px; }
+    .topline { align-items: flex-start; }
+    .topline span { text-align: right; }
+    .hero { border-radius: 16px; padding: 30px 23px; }
+    .quick-nav { flex-wrap: wrap; margin-top: 10px; border-radius: 12px; }
+    .quick-nav a { padding: 7px 9px; }
+    section { border-radius: 15px; padding: 23px 19px; }
+    .os-grid, .install-grid, .launch-grid, .result-grid, .help-grid, .final-list { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .meta-grid, .summary-flow { grid-template-columns: 1fr; }
+    .summary-flow li::after { display: none !important; }
+    .hero h1 br { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .toast { transition: none; }
+  }
+  @media print {
+    body { background: #fff; font-size: 11pt; }
+    .distribution-banner, .quick-nav, .copy-button, .toast { display: none; }
+    .page { width: 100%; padding: 0; }
+    .topline { margin-top: 0; }
+    .hero, section { break-inside: avoid; box-shadow: none; }
+    section { margin-top: 8mm; }
+    a { text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main-content">본문으로 바로가기</a>
+<div class="distribution-banner">외부 배포용 · 교육 1주 전 설치 안내</div>
+
+<div class="page">
+  <div class="topline">
+    <a class="back-link" href="https://hazelshu.github.io/fiti_education-guide/">← 수강생 안내로 돌아가기</a>
+    <span>2026년 산업맞춤형 혁신바우처 지원사업 · FITI시험연구원 관리자 교육</span>
+  </div>
+
+  <header class="hero">
+    <p class="eyebrow">BEFORE THE CLASS · 교육 1주 전 준비</p>
+    <h1>Antigravity 2.0<br>전용 설치 안내</h1>
+    <p class="hero-lead">
+      교육 전에 하실 일은 프로그램 <strong>두 가지를 설치</strong>하는 것뿐입니다.
+      30~45분이면 끝나고 중간에 재부팅이 한 번 있습니다.
+    </p>
+    <div class="meta-grid" aria-label="설치 안내 핵심 정보">
+      <div class="meta-card"><span>예상 소요</span><strong>약 30~45분</strong></div>
+      <div class="meta-card"><span>설치 도구</span><strong>Antigravity + Cloud SDK</strong></div>
+      <div class="meta-card"><span>재부팅</span><strong>Windows 1회</strong></div>
+      <div class="meta-card"><span>필요 공간</span><strong>5GB 이상</strong></div>
+    </div>
+    <div class="account-notice">
+      <strong>지금은 개인 구글 계정으로 로그인하지 마십시오.</strong>
+      실습 계정은 교육 당일 나눠 드리며, 계정 로그인과 사용량 연결은 첫 10분에 화면으로 함께 진행합니다.
+    </div>
+  </header>
+
+  <nav class="quick-nav" aria-label="설치 안내 바로가기">
+    <a href="#overview">한눈에 보기</a>
+    <a href="#check">노트북 확인</a>
+    <a href="#antigravity">Antigravity 설치</a>
+    <a href="#cloud-sdk">Cloud SDK 설치</a>
+    <a href="#verify">설치 확인</a>
+    <a href="#help">문제 해결</a>
+  </nav>
+
+  <main id="main-content">
+    <section id="overview">
+      <p class="section-kicker">QUICK START</p>
+      <h2>아래 네 단계만 순서대로 진행해 주세요</h2>
+      <p class="section-lead">본인 운영체제에 해당하는 안내만 따라가면 됩니다. 계정 설정은 교육 당일 함께 진행합니다.</p>
+      <ol class="summary-flow">
+        <li><b>1 · 사양 확인</b><span>운영체제, Mac 칩, 여유 공간을 확인합니다.</span></li>
+        <li><b>2 · Antigravity</b><span>설치 후 창이 뜨는지만 확인하고 닫습니다.</span></li>
+        <li><b>3 · Cloud SDK</b><span>기본 옵션으로 설치하고 필요한 경우 재부팅합니다.</span></li>
+        <li><b>4 · 버전 확인</b><span><code>gcloud --version</code> 결과가 나오면 완료입니다.</span></li>
+      </ol>
+    </section>
+
+    <section id="check">
+      <div class="step-title">
+        <span class="step-number">1</span>
+        <div>
+          <p class="section-kicker">DEVICE CHECK</p>
+          <h2>먼저 내 노트북이 되는지 확인해 주세요</h2>
+        </div>
+      </div>
+      <div class="os-grid">
+        <article class="os-card">
+          <span class="os-label">Windows</span>
+          <h3>Windows 10 또는 11</h3>
+          <ul class="spec-list">
+            <li><strong>64비트 운영체제</strong>여야 합니다.</li>
+            <li><strong>여유 공간 5GB 이상</strong>이 필요합니다.</li>
+            <li>프로그램 설치를 위한 <strong>관리자 권한</strong>을 확인해 주세요.</li>
+          </ul>
+          <p class="chip-path"><b>운영체제 확인 방법</b><br><strong>Windows 키</strong>를 누르고 <strong>winver</strong>를 입력한 뒤 Enter → Windows 10 또는 11이면 정상입니다.<br><strong>64비트 확인</strong> · 설정 → 시스템 → 정보 → 시스템 종류</p>
+        </article>
+        <article class="os-card">
+          <span class="os-label mac">macOS</span>
+          <h3>macOS 12 Monterey 이상</h3>
+          <ul class="spec-list">
+            <li><strong>Apple Silicon(M1 이상)</strong> 모델이어야 합니다.</li>
+            <li><strong>여유 공간 5GB 이상</strong>이 필요합니다.</li>
+          </ul>
+          <p class="chip-path"><b>운영체제·칩 확인 방법</b><br>화면 왼쪽 위 <strong>사과 메뉴</strong> → <strong>이 Mac에 관하여</strong> → macOS 버전과 칩 항목을 확인합니다.</p>
+          <p class="intel-warning">칩 항목이 Intel이면 신청 시 꼭 알려 주세요. 설치본이 Apple Silicon 전용이라 Intel Mac에서는 실행되지 않습니다.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="antigravity">
+      <div class="step-title">
+        <span class="step-number">2</span>
+        <div>
+          <p class="section-kicker">INSTALL 01</p>
+          <h2>Antigravity 2.0을 설치해 주세요</h2>
+        </div>
+      </div>
+      <a class="action-link" href="https://antigravity.google/" target="_blank" rel="noopener noreferrer">Antigravity 공식 사이트 열기 ↗</a>
+      <div class="install-grid">
+        <article class="install-card">
+          <span class="os-label">Windows</span>
+          <ol class="steps">
+            <li>공식 사이트에서 <strong>Windows용 설치 파일</strong>을 내려받습니다.</li>
+            <li>설치 파일을 실행하고 화면 안내에 따라 설치합니다.</li>
+            <li>설치 후 한 번 실행해 <strong>창이 뜨는지만 확인</strong>하고 닫습니다.</li>
+          </ol>
+        </article>
+        <article class="install-card">
+          <span class="os-label mac">macOS · Apple Silicon</span>
+          <ol class="steps">
+            <li>공식 사이트에서 <strong>macOS용 설치 파일</strong>을 내려받습니다.</li>
+            <li>Apple Silicon용인지 확인하고 화면 안내에 따라 설치합니다.</li>
+            <li>설치 후 한 번 실행해 <strong>창이 뜨는지만 확인</strong>하고 닫습니다.</li>
+          </ol>
+        </article>
+      </div>
+      <div class="do-not"><strong>로그인 화면이 나와도 지금은 로그인하지 마십시오.</strong> 교육용 실습 계정은 당일 나눠 드립니다.</div>
+    </section>
+
+    <section id="cloud-sdk">
+      <div class="step-title">
+        <span class="step-number">3</span>
+        <div>
+          <p class="section-kicker">INSTALL 02</p>
+          <h2>Google Cloud SDK를 설치해 주세요</h2>
+        </div>
+      </div>
+      <p class="section-lead">본인 운영체제 카드의 설치 버튼을 먼저 누른 뒤, 아래 세 단계만 따라가면 됩니다.</p>
+      <div class="install-grid">
+        <article class="install-card">
+          <span class="os-label">Windows</span>
+          <h3>명령어 입력 없이 바로 설치합니다</h3>
+          <a class="action-link" href="https://dl.google.com/dl/cloudsdk/channels/rapid/GoogleCloudSDKInstaller.exe?hl=ko">Windows 설치 파일 바로 받기 ↓</a>
+          <p class="download-note">버튼을 누르면 <code>GoogleCloudSDKInstaller.exe</code> 다운로드가 시작됩니다.</p>
+          <ol class="steps">
+            <li>다운로드된 <strong>GoogleCloudSDKInstaller.exe</strong> 파일을 실행합니다.</li>
+            <li>설치 화면의 옵션은 변경하지 않고 <strong>기본값 그대로</strong> 진행합니다.</li>
+            <li>설치가 끝나면 컴퓨터를 <strong>한 번 재시작</strong>합니다.</li>
+          </ol>
+        </article>
+        <article class="install-card">
+          <span class="os-label mac">macOS · ARM64</span>
+          <h3>Apple Silicon용 설치 안내를 확인합니다</h3>
+          <a class="action-link secondary" href="https://cloud.google.com/sdk/docs/install" target="_blank" rel="noopener noreferrer">macOS 설치 안내 보기 ↗</a>
+          <p class="download-note">공식 페이지에서 <strong>macOS 탭</strong>을 선택하고, <strong>ARM64 · Apple silicon</strong> 항목만 확인해 주세요.</p>
+          <ol class="steps">
+            <li>ARM64 · Apple silicon 설치 파일을 내려받습니다.</li>
+            <li>공식 페이지에 표시된 순서대로 설치합니다.</li>
+            <li>설치가 끝나면 <strong>터미널을 완전히 닫고 다시 실행</strong>합니다.</li>
+          </ol>
+        </article>
+      </div>
+    </section>
+
+    <section id="verify">
+      <div class="step-title">
+        <span class="step-number">4</span>
+        <div>
+          <p class="section-kicker">FINAL VERIFY</p>
+          <h2>명령어 한 줄로 설치를 확인해 주세요</h2>
+        </div>
+      </div>
+      <p class="section-lead">명령 프롬프트(Windows) 또는 터미널(macOS)을 열고 아래 명령어를 입력합니다.</p>
+      <div class="launch-grid" aria-label="운영체제별 명령어 입력 창 여는 방법">
+        <article class="launch-card">
+          <span class="os-label">Windows</span>
+          <h3>명령 프롬프트 열기</h3>
+          <p><strong>Windows 키</strong>를 누르고 <strong>명령 프롬프트</strong> 또는 <strong>cmd</strong>를 검색한 뒤 열어 주세요.</p>
+        </article>
+        <article class="launch-card">
+          <span class="os-label mac">macOS</span>
+          <h3>터미널 열기</h3>
+          <p><strong>Command(⌘) + Space</strong>를 누르고 <strong>터미널</strong>을 검색한 뒤 Return 키를 눌러 주세요.</p>
+        </article>
+      </div>
+      <div class="command-box">
+        <div class="command-head"><span>Windows · macOS 공통</span><button class="copy-button" type="button" data-copy="gcloud --version" aria-label="gcloud 버전 확인 명령어 복사">명령어 복사</button></div>
+        <pre><code>gcloud --version</code></pre>
+      </div>
+      <div class="result-grid">
+        <div class="result-card success"><b>✓ 버전 번호가 나옵니다</b><span>준비가 모두 완료되었습니다.</span></div>
+        <div class="result-card retry"><b>! “명령을 찾을 수 없습니다”가 나옵니다</b><span>컴퓨터를 재시작한 뒤 다시 시도해 주세요.</span></div>
+      </div>
+    </section>
+
+    <section id="help">
+      <p class="section-kicker">TROUBLESHOOTING</p>
+      <h2>설치가 막히면 이렇게 진행해 주세요</h2>
+      <div class="help-grid">
+        <article class="help-card">
+          <h3>관리자 권한이 필요하다고 나옵니다</h3>
+          <p>사내 정보전산 담당 부서에 설치를 요청해 주세요. 사전 지원이 어려우면 교육 신청 시 설치가 어렵다고 알려 주세요.</p>
+        </article>
+        <article class="help-card">
+          <h3>사내 방화벽을 사용하고 있습니다</h3>
+          <p>아래 주소의 접속 허용이 필요합니다. 정보전산 담당 부서에 함께 전달해 주세요.</p>
+          <div class="domain-list" aria-label="방화벽 허용 주소">
+            <code>accounts.google.com</code>
+            <code>*.googleapis.com</code>
+            <code>cloud.google.com</code>
+          </div>
+        </article>
+        <article class="help-card">
+          <h3>Mac의 칩이 Intel로 표시됩니다</h3>
+          <p>현재 안내된 Antigravity 설치본은 실행되지 않습니다. 다른 설치 방법 안내가 필요하므로 신청 시 반드시 알려 주세요.</p>
+        </article>
+        <article class="help-card">
+          <h3>설치 후 명령어가 인식되지 않습니다</h3>
+          <p>Windows는 컴퓨터를 재시작하고, macOS는 터미널을 완전히 닫았다가 다시 연 뒤 <code>gcloud --version</code>을 입력해 주세요.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="final-check" aria-labelledby="final-check-title">
+      <p class="section-kicker">READY TO GO</p>
+      <h2 id="final-check-title">교육 전 마지막으로 확인해 주세요</h2>
+      <ul class="final-list">
+        <li>내 노트북이 지원 운영체제입니다.</li>
+        <li>여유 공간이 5GB 이상입니다.</li>
+        <li>Antigravity 창이 정상적으로 열립니다.</li>
+        <li><code>gcloud --version</code> 결과가 나옵니다.</li>
+        <li>개인 구글 계정으로 로그인하지 않았습니다.</li>
+        <li>설치 문제는 신청 시 미리 알렸습니다.</li>
+      </ul>
+      <p class="closing">여기까지 확인되면 교육 준비 완료입니다. 계정 로그인은 당일 첫 10분에 함께 진행합니다.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong>FITI시험연구원 × 솔트룩스</strong> · Antigravity 전용 설치 안내</p>
+    <p>교육 일자·장소·실습 계정은 운영 안내 메일을 확인해 주세요.</p>
+    <p>본 안내문 작성에는 생성형 AI가 보조적으로 활용되었으며, 교육 운영 책임자의 최종 확인을 전제로 합니다.</p>
+  </footer>
+</div>
+
+<div class="footer-banner">외부 배포용 · FITI-ANTIGRAVITY-PREINSTALL</div>
+<div class="toast" role="status" aria-live="polite">명령어를 복사했습니다.</div>
+<script>
+  const copyButton = document.querySelector("[data-copy]");
+  const toast = document.querySelector(".toast");
+  let toastTimer;
+
+  copyButton?.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(copyButton.dataset.copy);
+      copyButton.textContent = "복사 완료";
+      toast.classList.add("show");
+      window.clearTimeout(toastTimer);
+      toastTimer = window.setTimeout(() => {
+        copyButton.textContent = "명령어 복사";
+        toast.classList.remove("show");
+      }, 1800);
+    } catch {
+      copyButton.textContent = "직접 선택해 복사해 주세요";
+    }
+  });
+</script>
+</body>
+</html>

@@ -628,6 +628,28 @@
     color: #734500;
   }
 
+  .guide-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 14px;
+    border: 1px solid var(--blue);
+    border-radius: 10px;
+    background: var(--blue);
+    color: #ffffff;
+    padding: 9px 13px;
+    font-size: 13px;
+    font-weight: 850;
+    text-decoration: none;
+  }
+
+  .guide-link:hover,
+  .guide-link:focus-visible {
+    background: var(--navy);
+    outline: 3px solid #bed4ff;
+    outline-offset: 2px;
+  }
+
   .traffic {
     display: grid;
     gap: 10px;
@@ -1346,6 +1368,7 @@
         <strong>설치가 어렵거나 자료 반출이 불가능해도 참여할 수 있습니다.</strong>
         사전 설문에 “설치 안 됨” 또는 “자료 반출 어려움”이라고 적어 주세요.
         2인 1조 운영과 강사가 준비한 가상 자료로 같은 흐름을 실습합니다.
+        <br><a class="guide-link" href="antigravity-install/">Antigravity 전용 설치 안내 보기 →</a>
       </div>
 
       <h3 style="margin-top: 28px;">업무 파일은 신호등 기준으로 골라 주세요</h3>
