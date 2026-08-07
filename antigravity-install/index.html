@@ -291,7 +291,7 @@
     margin-bottom: 13px;
     place-items: center;
     border-radius: 9px;
-    background: var(--teal);
+    background: var(--blue);
     color: #fff;
     font-size: 13px;
     font-weight: 900;
@@ -583,9 +583,9 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid var(--blue);
+    border: 1px solid var(--red);
     border-radius: 10px;
-    background: var(--blue);
+    background: var(--red);
     color: #fff;
     padding: 11px 15px;
     font-size: 14px;
@@ -594,8 +594,9 @@
     text-decoration: none;
   }
   .contact-button:hover, .contact-button:focus-visible {
-    background: var(--navy);
-    outline: 3px solid #bed4ff;
+    border-color: #7f1d1d;
+    background: #7f1d1d;
+    outline: 3px solid #fecaca;
     outline-offset: 2px;
   }
 
@@ -789,7 +790,6 @@
           <h3>설치 중 문제가 생기면 문의해 주세요</h3>
           <p>버튼을 누르면 아래 항목이 포함된 메일 양식이 자동으로 열립니다. 가능한 범위에서 간단히 적어 보내 주시면 확인이 빨라집니다.</p>
           <p class="contact-person">설치 문의 · 김태영 강사 · <a href="mailto:peterkim@projectresearch.co.kr">peterkim@projectresearch.co.kr</a></p>
-          <p>자동 참조(CC) · 솔트룩스 서해슬 매니저 · hazel.shu@saltlux.com</p>
           <ul class="contact-fields" aria-label="설치 문의 메일 작성 항목">
             <li>이름·부서</li>
             <li>운영체제</li>
@@ -798,7 +798,7 @@
             <li>시도한 조치</li>
           </ul>
         </div>
-        <a class="contact-button" href="mailto:peterkim@projectresearch.co.kr">설치 문의 메일 작성하기 ↗</a>
+        <a class="contact-button" href="mailto:peterkim@projectresearch.co.kr">📧 설치 문의 메일 작성하기 ↗</a>
       </div>
     </section>
 
@@ -974,7 +974,7 @@
 - 시도한 조치: 재시작 / 재설치 / 기타
 
 감사합니다.`;
-    contactButton.href = `mailto:peterkim@projectresearch.co.kr?cc=${encodeURIComponent("hazel.shu@saltlux.com")}&subject=${encodeURIComponent(contactSubject)}&body=${encodeURIComponent(contactBody)}`;
+    contactButton.href = `mailto:peterkim@projectresearch.co.kr?cc=${encodeURIComponent("hazel.shu@saltlux.com,amanda_park@fiti.re.kr")}&subject=${encodeURIComponent(contactSubject)}&body=${encodeURIComponent(contactBody)}`;
     contactButton.title = `메일 제목: ${contactSubject}`;
   }
 
