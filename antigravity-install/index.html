@@ -695,13 +695,13 @@
 
   <nav class="quick-nav" aria-label="설치 안내 바로가기">
     <a href="#overview">한눈에 보기</a>
+    <a href="#install-contact">설치 문의</a>
     <a href="#why-antigravity">왜 Antigravity인가요</a>
     <a href="#check">노트북 확인</a>
     <a href="#antigravity">Antigravity 설치</a>
     <a href="#cloud-sdk">Cloud SDK 설치</a>
     <a href="#verify">설치 확인</a>
     <a href="#help">문제 해결</a>
-    <a href="#install-contact">설치 문의</a>
   </nav>
 
   <main id="main-content">
@@ -780,7 +780,8 @@
         <div>
           <h3>설치 중 문제가 생기면 문의해 주세요</h3>
           <p>버튼을 누르면 아래 항목이 포함된 메일 양식이 자동으로 열립니다. 가능한 범위에서 간단히 적어 보내 주시면 확인이 빨라집니다.</p>
-          <p class="contact-person">설치 문의 · 솔트룩스 서해슬 매니저 · <a href="mailto:hazel.shu@saltlux.com">hazel.shu@saltlux.com</a></p>
+          <p class="contact-person">설치 문의 · 김태영 강사 · <a href="mailto:peterkim@projectresearch.co.kr">peterkim@projectresearch.co.kr</a></p>
+          <p>자동 참조(CC) · 솔트룩스 서해슬 매니저 · hazel.shu@saltlux.com</p>
           <ul class="contact-fields" aria-label="설치 문의 메일 작성 항목">
             <li>이름·부서</li>
             <li>운영체제</li>
@@ -789,7 +790,7 @@
             <li>시도한 조치</li>
           </ul>
         </div>
-        <a class="contact-button" href="mailto:hazel.shu@saltlux.com?subject=%5BFITI%20AI%20%EA%B5%90%EC%9C%A1%5D%20Antigravity%20%EC%84%A4%EC%B9%98%20%EB%AC%B8%EC%9D%98&amp;body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94.%20FITI%EC%8B%9C%ED%97%98%EC%97%B0%EA%B5%AC%EC%9B%90%20%EA%B5%90%EC%9C%A1%20%EC%88%98%EA%B0%95%EC%83%9D%EC%9E%85%EB%8B%88%EB%8B%A4.%0A%EC%95%84%EB%9E%98%20%EC%84%A4%EC%B9%98%20%EB%AC%B8%EC%A0%9C%EB%A5%BC%20%ED%99%95%EC%9D%B8%20%EB%B6%80%ED%83%81%EB%93%9C%EB%A6%BD%EB%8B%88%EB%8B%A4.%0A%0A-%20%EC%9D%B4%EB%A6%84%20%2F%20%EB%B6%80%EC%84%9C%3A%0A-%20%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C%3A%20Windows%2010%2F11%20%EB%98%90%EB%8A%94%20macOS%20%EB%B2%84%EC%A0%84%0A-%20%EB%AC%B8%EC%A0%9C%EA%B0%80%20%EB%B0%9C%EC%83%9D%ED%95%9C%20%EB%8B%A8%EA%B3%84%3A%20%EB%85%B8%ED%8A%B8%EB%B6%81%20%ED%99%95%EC%9D%B8%20%2F%20Antigravity%20%EC%84%A4%EC%B9%98%20%2F%20Google%20Cloud%20SDK%20%EC%84%A4%EC%B9%98%20%2F%20gcloud%20%EB%B2%84%EC%A0%84%20%ED%99%95%EC%9D%B8%0A-%20%ED%99%94%EB%A9%B4%EC%97%90%20%ED%91%9C%EC%8B%9C%EB%90%9C%20%EC%98%A4%EB%A5%98%20%EB%AC%B8%EA%B5%AC%3A%0A-%20%EC%8B%9C%EB%8F%84%ED%95%9C%20%EC%A1%B0%EC%B9%98%3A%20%EC%9E%AC%EC%8B%9C%EC%9E%91%20%2F%20%EC%9E%AC%EC%84%A4%EC%B9%98%20%2F%20%EA%B8%B0%ED%83%80%0A%0A%EA%B0%90%EC%82%AC%ED%95%A9%EB%8B%88%EB%8B%A4.">설치 문의 메일 작성하기 ↗</a>
+        <a class="contact-button" href="mailto:peterkim@projectresearch.co.kr">설치 문의 메일 작성하기 ↗</a>
       </div>
     </section>
 
@@ -944,7 +945,30 @@
 <script>
   const copyButton = document.querySelector("[data-copy]");
   const toast = document.querySelector(".toast");
+  const overviewSection = document.querySelector("#overview");
+  const contactCard = document.querySelector("#install-contact");
+  const contactButton = document.querySelector(".contact-button");
   let toastTimer;
+
+  if (overviewSection && contactCard) {
+    overviewSection.insertAdjacentElement("afterend", contactCard);
+  }
+
+  if (contactButton) {
+    const contactSubject = "[FITI시험연구원] 업무의 AX 전환과 생성형 AI 활용 설치 문의";
+    const contactBody = `안녕하세요. FITI시험연구원 교육 수강생입니다.
+아래 설치 문제를 확인 부탁드립니다.
+
+- 이름 / 부서:
+- 운영체제: Windows 10/11 또는 macOS 버전
+- 문제가 발생한 단계: 노트북 확인 / Antigravity 설치 / Google Cloud SDK 설치 / gcloud 버전 확인
+- 화면에 표시된 오류 문구:
+- 시도한 조치: 재시작 / 재설치 / 기타
+
+감사합니다.`;
+    contactButton.href = `mailto:peterkim@projectresearch.co.kr?cc=${encodeURIComponent("hazel.shu@saltlux.com")}&subject=${encodeURIComponent(contactSubject)}&body=${encodeURIComponent(contactBody)}`;
+    contactButton.title = `메일 제목: ${contactSubject}`;
+  }
 
   copyButton?.addEventListener("click", async () => {
     try {
