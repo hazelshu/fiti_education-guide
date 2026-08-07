@@ -544,15 +544,22 @@
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 22px;
     align-items: center;
-    margin-top: 18px;
-    border: 1px solid #c9d8f0;
-    border-left: 5px solid var(--blue);
-    border-radius: 0 15px 15px 0;
-    background: linear-gradient(135deg, #f7faff 0%, var(--blue-soft) 100%);
-    padding: 22px;
+    margin: 0;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background: var(--paper);
+    padding: clamp(24px, 4vw, 40px);
+    box-shadow: 0 8px 24px rgba(18,49,111,.04);
   }
-  .contact-card h3 { font-size: 18px; }
+  .contact-card h3 { color: var(--navy); font-size: clamp(20px, 2.5vw, 26px); }
   .contact-card > div > p { margin-top: 7px; color: var(--muted); font-size: 14px; }
+  .contact-card .contact-kicker {
+    margin: 0 0 6px;
+    color: var(--blue);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .1em;
+  }
   .contact-person { color: var(--navy) !important; font-weight: 800; }
   .contact-person a { color: var(--blue); }
   .contact-fields {
@@ -566,7 +573,7 @@
   .contact-fields li {
     border: 1px solid #c9d8f0;
     border-radius: 999px;
-    background: #fff;
+    background: var(--blue-soft);
     padding: 4px 9px;
     color: var(--navy);
     font-size: 12px;
@@ -778,6 +785,7 @@
 
       <div class="contact-card" id="install-contact">
         <div>
+          <p class="contact-kicker">INSTALL SUPPORT</p>
           <h3>설치 중 문제가 생기면 문의해 주세요</h3>
           <p>버튼을 누르면 아래 항목이 포함된 메일 양식이 자동으로 열립니다. 가능한 범위에서 간단히 적어 보내 주시면 확인이 빨라집니다.</p>
           <p class="contact-person">설치 문의 · 김태영 강사 · <a href="mailto:peterkim@projectresearch.co.kr">peterkim@projectresearch.co.kr</a></p>
