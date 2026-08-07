@@ -272,6 +272,51 @@
   .summary-flow b { color: var(--navy); font-size: 15px; }
   .summary-flow span { margin-top: 7px; color: var(--muted); font-size: 13px; line-height: 1.55; }
 
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .why-card {
+    border: 1px solid #c9d8f0;
+    border-radius: 15px;
+    background: var(--blue-pale);
+    padding: 20px;
+  }
+  .why-number {
+    display: grid;
+    width: 32px;
+    height: 32px;
+    margin-bottom: 13px;
+    place-items: center;
+    border-radius: 9px;
+    background: var(--teal);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 900;
+  }
+  .why-card h3 { font-size: 16px; }
+  .why-card p { margin-top: 8px; color: var(--muted); font-size: 14px; }
+  .why-summary {
+    margin-top: 18px;
+    border-left: 5px solid var(--blue);
+    border-radius: 0 12px 12px 0;
+    background: var(--blue-soft);
+    padding: 16px 18px;
+    color: var(--navy);
+  }
+  .security-note {
+    margin-top: 12px;
+    border-left: 5px solid var(--amber);
+    border-radius: 0 12px 12px 0;
+    background: var(--amber-soft);
+    padding: 16px 18px;
+    color: #654000;
+    font-size: 14px;
+  }
+  .security-note strong { color: #734500; }
+
   .os-grid, .install-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0,1fr));
@@ -533,7 +578,7 @@
     .quick-nav { flex-wrap: wrap; margin-top: 10px; border-radius: 12px; }
     .quick-nav a { padding: 7px 9px; }
     section { border-radius: 15px; padding: 23px 19px; }
-    .os-grid, .install-grid, .launch-grid, .result-grid, .help-grid, .final-list { grid-template-columns: 1fr; }
+    .why-grid, .os-grid, .install-grid, .launch-grid, .result-grid, .help-grid, .final-list { grid-template-columns: 1fr; }
   }
   @media (max-width: 480px) {
     .meta-grid, .summary-flow { grid-template-columns: 1fr; }
@@ -569,8 +614,10 @@
     <p class="eyebrow">BEFORE THE CLASS · 교육 1주 전 준비</p>
     <h1>Antigravity 2.0<br>전용 설치 안내</h1>
     <p class="hero-lead">
-      교육 전에 하실 일은 프로그램 <strong>두 가지를 설치</strong>하는 것뿐입니다.
-      30~45분이면 끝나고 중간에 재부팅이 한 번 있습니다.
+      FITI시험연구원 관리자 대상 1일 8시간 교육을 <strong>설치가 아닌 실습과 업무 적용</strong>에 온전히 쓰기 위한
+      <strong>Windows 10/11 · macOS 12(Monterey) 이상</strong> 사전 준비 가이드입니다.
+      Antigravity 2.0과 Google Cloud SDK 두 가지만 순서대로 설치하면 됩니다.
+      처음 사용하시는 분도 화면 안내와 마지막 확인 명령어 한 줄만으로 준비를 마칠 수 있도록 구성했습니다.
     </p>
     <div class="meta-grid" aria-label="설치 안내 핵심 정보">
       <div class="meta-card"><span>예상 소요</span><strong>약 30~45분</strong></div>
@@ -586,6 +633,7 @@
 
   <nav class="quick-nav" aria-label="설치 안내 바로가기">
     <a href="#overview">한눈에 보기</a>
+    <a href="#why-antigravity">왜 Antigravity인가요</a>
     <a href="#check">노트북 확인</a>
     <a href="#antigravity">Antigravity 설치</a>
     <a href="#cloud-sdk">Cloud SDK 설치</a>
@@ -604,6 +652,33 @@
         <li><b>3 · Cloud SDK</b><span>기본 옵션으로 설치하고 필요한 경우 재부팅합니다.</span></li>
         <li><b>4 · 버전 확인</b><span><code>gcloud --version</code> 결과가 나오면 완료입니다.</span></li>
       </ol>
+    </section>
+
+    <section id="why-antigravity">
+      <p class="section-kicker">WHY ANTIGRAVITY</p>
+      <h2>왜 웹 AI가 아니라 Antigravity를 사용하나요?</h2>
+      <p class="section-lead">이번 교육의 목표는 AI와 대화하는 방법만 배우는 것이 아닙니다. 내 PC의 작업 폴더에서 실제 업무 파일을 만들고 수정하며, 앞 시간의 결과를 다음 실습에 이어 쓰는 업무 흐름을 익히는 것이 목표입니다.</p>
+
+      <div class="why-grid">
+        <article class="why-card">
+          <span class="why-number">1</span>
+          <h3>대화가 아니라 파일이 남습니다</h3>
+          <p>웹 AI의 답변은 주로 대화창에 남지만, Antigravity는 지정한 작업 폴더에 문서와 결과물을 실제 파일로 만들고 수정할 수 있습니다.</p>
+        </article>
+        <article class="why-card">
+          <span class="why-number">2</span>
+          <h3>여러 단계의 업무가 이어집니다</h3>
+          <p><code>dna.md</code> 작성부터 업무 온톨로지맵, 대시보드, 규격 비교표, AI 적용 과제정의서까지 앞 단계의 결과물을 다음 단계에서 계속 활용합니다.</p>
+        </article>
+        <article class="why-card">
+          <span class="why-number">3</span>
+          <h3>교육 후에도 이어 쓸 수 있습니다</h3>
+          <p>실습 결과가 본인 노트북의 파일로 남기 때문에 교육 다음 날에도 같은 폴더를 열어 업무에 적용하거나 내용을 보완할 수 있습니다.</p>
+        </article>
+      </div>
+
+      <p class="why-summary"><strong>한 문장으로 정리하면</strong> — 웹 AI가 <strong>답을 받는 도구</strong>라면, Antigravity는 <strong>업무 결과물을 파일로 남기고 이어서 완성하는 실습 도구</strong>입니다.</p>
+      <div class="security-note"><strong>보안·데이터 주의</strong> — Antigravity가 내 PC의 파일을 다루더라도 AI 처리를 위해 파일 내용이 외부 서비스로 전송될 수 있습니다. 고객 원본, 시험성적서 원본, 표준 원문, 개인정보와 대외비 자료는 사용하지 않고 공개 자료나 익명화한 사본만 사용합니다.</div>
     </section>
 
     <section id="check">
