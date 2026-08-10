@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="FITI시험연구원 Antigravity 2.0 및 Google Cloud SDK 교육 전 설치 안내">
+<meta name="description" content="FITI시험연구원 Antigravity 및 Google Cloud SDK 교육 전 설치 안내">
 <meta name="audience" content="FITI시험연구원 생성형 AI 교육 수강생">
 <meta name="document-id" content="FITI-ANTIGRAVITY-PREINSTALL">
 <meta name="sensitivity" content="external">
@@ -599,6 +599,17 @@
     outline: 3px solid #fecaca;
     outline-offset: 2px;
   }
+  .contact-action {
+    display: grid;
+    gap: 9px;
+    width: min(100%, 280px);
+  }
+  .contact-cc-note {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.55;
+    text-align: center;
+  }
 
   .final-check { border: 2px solid #bad0f0; background: var(--blue-soft); }
   .final-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 9px; }
@@ -648,7 +659,7 @@
     section { border-radius: 15px; padding: 23px 19px; }
     .why-grid, .os-grid, .install-grid, .launch-grid, .result-grid, .help-grid, .final-list { grid-template-columns: 1fr; }
     .contact-card { grid-template-columns: 1fr; }
-    .contact-button { width: 100%; }
+    .contact-action, .contact-button { width: 100%; }
   }
   @media (max-width: 480px) {
     .meta-grid, .summary-flow { grid-template-columns: 1fr; }
@@ -682,10 +693,10 @@
 
   <header class="hero">
     <p class="eyebrow">BEFORE THE CLASS · 교육 1주 전 준비</p>
-    <h1>Antigravity 2.0<br>전용 설치 안내</h1>
+    <h1>Antigravity<br>전용 설치 안내</h1>
     <p class="hero-lead">
       FITI시험연구원 관리자 대상 1일 8시간 교육을 <strong>설치가 아닌 실습과 업무 적용</strong>에 온전히 쓰기 위한 사전 준비 가이드입니다.
-      Antigravity 2.0과 Google Cloud SDK 두 가지만 순서대로 설치하면 됩니다.
+      Antigravity와 Google Cloud SDK 두 가지만 순서대로 설치하면 됩니다.
       처음 사용하시는 분도 화면 안내와 마지막 확인 명령어 한 줄만으로 준비를 마칠 수 있도록 구성했습니다.
     </p>
     <div class="meta-grid" aria-label="설치 안내 핵심 정보">
@@ -696,7 +707,7 @@
     </div>
     <div class="account-notice">
       <strong>지금은 개인 구글 계정으로 로그인하지 마십시오.</strong>
-      실습 계정은 교육 당일 나눠 드리며, 계정 로그인과 사용량 연결은 첫 10분에 화면으로 함께 진행합니다.
+      실습 계정은 교육 당일 나눠 드리며, 계정 로그인과 실습 환경 연결은 강사 안내에 따라 함께 진행합니다.
     </div>
   </header>
 
@@ -797,7 +808,10 @@
             <li>시도한 조치</li>
           </ul>
         </div>
-        <a class="contact-button" href="mailto:peterkim@projectresearch.co.kr">📧 설치 문의 메일 작성하기 ↗</a>
+        <div class="contact-action">
+          <a class="contact-button" href="mailto:peterkim@projectresearch.co.kr">📧 설치 문의 메일 작성하기 ↗</a>
+          <p class="contact-cc-note">※ 원활한 문의 대응과 교육 운영 확인을 위해 교육운영 담당자가 자동 참조(CC)됩니다. 참조 주소를 유지한 채 발송해 주세요.</p>
+        </div>
       </div>
     </section>
 
@@ -806,7 +820,7 @@
         <span class="step-number">2</span>
         <div>
           <p class="section-kicker">INSTALL 01</p>
-          <h2>Antigravity 2.0을 설치해 주세요</h2>
+          <h2>Antigravity를 설치해 주세요</h2>
         </div>
       </div>
       <a class="action-link" href="https://antigravity.google/" target="_blank" rel="noopener noreferrer">Antigravity 공식 사이트 열기 ↗</a>
@@ -828,6 +842,7 @@
           </ol>
         </article>
       </div>
+      <p class="download-note"><strong>자동 업데이트 안내</strong> · Antigravity는 설치 후 자동으로 최신 버전으로 업데이트될 수 있습니다. 안내 화면과 일부 메뉴가 다르게 보여도 로그인하지 말고, 프로그램 창이 정상적으로 열리는지만 확인해 주세요.</p>
       <div class="do-not"><strong>로그인 화면이 나와도 지금은 로그인하지 마십시오.</strong> 교육용 실습 계정은 당일 나눠 드립니다.</div>
     </section>
 
@@ -910,7 +925,11 @@
           <p>아래 주소의 접속 허용이 필요합니다. 정보전산 담당 부서에 함께 전달해 주세요.</p>
           <div class="domain-list" aria-label="방화벽 허용 주소">
             <code>accounts.google.com</code>
+            <code>oauth2.googleapis.com</code>
             <code>*.googleapis.com</code>
+            <code>*.googleusercontent.com</code>
+            <code>storage.googleapis.com</code>
+            <code>antigravity.google</code>
             <code>cloud.google.com</code>
           </div>
         </article>
@@ -936,7 +955,7 @@
         <li>개인 구글 계정으로 로그인하지 않았습니다.</li>
         <li>설치 문제는 신청 시 미리 알렸습니다.</li>
       </ul>
-      <p class="closing">여기까지 확인되면 교육 준비 완료입니다. 계정 로그인은 당일 첫 10분에 함께 진행합니다.</p>
+      <p class="closing">여기까지 확인되면 교육 준비 완료입니다. 계정 로그인과 실습 환경 연결은 교육 당일 강사 안내에 따라 함께 진행합니다.</p>
     </section>
   </main>
 
