@@ -599,16 +599,12 @@
     outline: 3px solid #fecaca;
     outline-offset: 2px;
   }
-  .contact-action {
-    display: grid;
-    gap: 9px;
-    width: min(100%, 280px);
-  }
-  .contact-cc-note {
+  .contact-card .contact-cc-note {
+    margin-top: 4px;
     color: var(--muted);
-    font-size: 11px;
+    font-size: 12px;
     line-height: 1.55;
-    text-align: center;
+    text-align: left;
   }
 
   .final-check { border: 2px solid #bad0f0; background: var(--blue-soft); }
@@ -659,7 +655,7 @@
     section { border-radius: 15px; padding: 23px 19px; }
     .why-grid, .os-grid, .install-grid, .launch-grid, .result-grid, .help-grid, .final-list { grid-template-columns: 1fr; }
     .contact-card { grid-template-columns: 1fr; }
-    .contact-action, .contact-button { width: 100%; }
+    .contact-button { width: 100%; }
   }
   @media (max-width: 480px) {
     .meta-grid, .summary-flow { grid-template-columns: 1fr; }
@@ -800,6 +796,7 @@
           <h3>설치 중 문제가 생기면 문의해 주세요</h3>
           <p>버튼을 누르면 아래 항목이 포함된 메일 양식이 자동으로 열립니다. 가능한 범위에서 간단히 적어 보내 주시면 확인이 빨라집니다.</p>
           <p class="contact-person">설치 문의 · 김태영 강사 · <a href="mailto:peterkim@projectresearch.co.kr">peterkim@projectresearch.co.kr</a></p>
+          <p class="contact-cc-note">※ 원활한 문의 대응을 위해 교육운영 담당자가 자동 참조(CC)됩니다. 참조 주소를 유지한 채 발송해 주세요.</p>
           <ul class="contact-fields" aria-label="설치 문의 메일 작성 항목">
             <li>이름·부서</li>
             <li>운영체제</li>
@@ -808,10 +805,7 @@
             <li>시도한 조치</li>
           </ul>
         </div>
-        <div class="contact-action">
-          <a class="contact-button" href="mailto:peterkim@projectresearch.co.kr">📧 설치 문의 메일 작성하기 ↗</a>
-          <p class="contact-cc-note">※ 원활한 문의 대응과 교육 운영 확인을 위해 교육운영 담당자가 자동 참조(CC)됩니다. 참조 주소를 유지한 채 발송해 주세요.</p>
-        </div>
+        <a class="contact-button" href="mailto:peterkim@projectresearch.co.kr">📧 설치 문의 메일 작성하기 ↗</a>
       </div>
     </section>
 
